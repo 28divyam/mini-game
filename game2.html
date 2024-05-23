@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game Centre</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.navbar {
+    background: linear-gradient(to right, #00416A, #799F0C);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-icon {
+    cursor: pointer;
+}
+
+.menu-bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background: #111;
+    transition: left 0.3s ease;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.sidebar .nav-link {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #00416A;
+}
+
+.main {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.game {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.game h3 {
+    color: #00416A;
+    margin-bottom: 10px;
+}
+
+.game p {
+    color: #555;
+}
+
+.btn {
+    background-color: #00416A;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #005D94;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list-item {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .main {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        left: -100%;
+    }
+
+    .menu-bar {
+        width: 25px;
+    }
+}
+
+.low_txt {
+            height: 60px;
+            width: 100%;
+            justify-content: center;
+            background: linear-gradient(to left, #dddddd, #666666);
+            padding: 15px 0;
+            text-align: center;
+            color: white;
+            /* Text color */
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .low_txt2 {
+
+            justify-content: center;
+            background: linear-gradient(to right, #dddddd, #666666);
+            padding: 15px 0;
+            text-align: center;
+            color: white;
+            /* Text color */
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover{
+box-shadow: 5px 5px 2px 2px rgba(128, 128, 128, 0.329);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 600px; /* Adjust the maximum width as needed */
+            margin: 0 auto; /* Center the grid */
+        }
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hide the sidebar */
+    height: 100%;
+    width: 250px;
+    background: #111;
+    transition: left 0.3s ease;
+    z-index: 3; /* Set a higher z-index */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    padding-top: 60px; /* Adjust padding to make room for navbar */
+}
+
+.main {
+    margin-left: 250px; /* Adjust content area to make space for sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+    z-index: 2; /* Lower z-index to keep content behind sidebar */
+}
+
+.navbar {
+    background: linear-gradient(to right, #00416A, #799F0C);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1; /* Set a higher z-index to bring navbar in front of content */
+}
+.card-body{
+    background-color: lightgrey;
+}
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="navbar">
+            <div class="menu-icon" onclick="toggleSidebar()">
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+            </div>
+            <h2 class="text-white">Mini Game Centre</h2>
+        </div>
+        <div style="margin-top: 10px;">
+            
+            <marquee behavior="" direction="">Welcome to the Mini Game Center!</marquee>
+        </div>
+        <nav class="sidebar" id="sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="ttt.html">
+                        Tic Tac Toe
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="snake.html">
+                        Snake Game
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="guess.html">
+                        Guess the Number
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="flip.html">
+                        Match Pair
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="simon.html">
+                        Simon Game
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rps.html">
+                        Rock Paper Scissors
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="toggleSidebar()">Exit</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="container">
+        <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        
+            <img src="Screenshot 2023-12-14 003615.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><b>TIC-TAC-TOE</b></h5>
+                <p class="card-text">Tic Tac Toe is traditionally played on a 3 × 3 grid. Players take turns placing a mark
+                    in one of the cells of the grid. </p>
+                <a href="ttt.html" class="btn btn-success">PLAY NOW</a>
+            </div>
+        </div>
+
+    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        <img src="SNAKE.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><b>SNAKE GAME</b></h5>
+            <p class="card-text"> The "head" of the snake continually moves forward, unable to stop, growing ever
+                longer. It must be steered left, right, up, and down to avoid hitting walls and the body of either
+                snake. </p>
+            <a href="snake.html" class="btn btn-success">PLAY NOW</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        <img src="GUESS.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><b>GUESS THE NUMBER?</b></h5>
+            <p class="card-text"> A number guessing game is a simple guessing game where a user is supposed to guess a
+                number between 0 and N in your maximum attempts </p>
+            <a href="guess.html" class="btn btn-success">PLAY NOW</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        <img src="memry.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><b>MATCH PAIR</b></h5>
+            <p class="card-text"> The first player turns over 2 cards. If the pictures match, the player keeps the cards and tries again for another match. If they do not match the cards are turned over again and the player to the left takes a turn. </p>
+            <a href="flip.html" class="btn btn-success">PLAY NOW</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        <img src="simon game.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> <b>SIMON GAME</b></h5>
+            <p class="card-text"> "Simon Game: Test your memory and reflexes by repeating sequences of colored buttons!" </p>
+            <a href="simon.html" class="btn btn-success">PLAY NOW</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; margin-bottom: 20px;">
+        <img src="rps.png" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> <b>ROCK PAPER SCISSORS</b></h5>
+            <p class="card-text"> "In Rock, Paper, Scissors, players choose hand gestures to compete against each other, aiming to win by selecting the superior element." </p>
+            <a href="rps.html" class="btn btn-success">PLAY NOW</a>
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="lower" style="background-color: rgba(0, 0, 0, 0.724);">
+        <div>
+            <p CLASS="low_txt">A UNIQUE GAMING PLATFORM</p>
+        </div>
+        <div>
+            <p ><pre class="low_txt2">100% FREE    MULTIPLAYER     CHILD FRIENDLY</pre></p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h4 class="footer-heading">Games</h4>
+                    <ul class="footer-list">
+                        <li class="footer-list-item">Tic Tac Toe</li>
+                        <li class="footer-list-item">Snake Game</li>
+                        <li class="footer-list-item">Guess the Number</li>
+                        <li class="footer-list-item">Match Pair</li>
+                        <li class="footer-list-item">Simon Game</li>
+                        <li class="footer-list-item">Rock Paper Scissors</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <ul class="footer-list">
+                        <li class="footer-list-item">Discord</li>
+                        <li class="footer-list-item">Facebook</li>
+                        <li class="footer-list-item">YouTube</li>
+                        <li class="footer-list-item">Instagram</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-list">
+                        <li class="footer-list-item">Blog</li>
+                        <li class="footer-list-item">Developers</li>
+                        <li class="footer-list-item">API</li>
+                        <li class="footer-list-item">Privacy</li>
+                        <li class="footer-list-item">Terms & conditions</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-list">
+                        <li class="footer-list-item">DHH@games.com</li>
+                        <li class="footer-list-item">Delhi</li>
+                        <li class="footer-list-item">100 - India</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script >
+        function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    if (sidebar.style.left === "-250px") {
+        sidebar.style.left = "0";
+    } else {
+        sidebar.style.left = "-250px";
+    }
+}
+
+// Add event listeners to all game links
+var gameLinks = document.querySelectorAll(".nav-link:not([href='#'])");
+gameLinks.forEach(function(link) {
+    link.addEventListener("click", function(event) {
+        toggleSidebar(); // Close sidebar
+    });
+});
+
+    </script>
+</body>
+
+</html>
